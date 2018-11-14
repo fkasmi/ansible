@@ -1,0 +1,17 @@
+---
+ansible_host: 192.168.182.112
+vlans:
+- { id: 10, name: web }
+- { id: 20, name: app }
+- { id: 30, name: db }
+- { id: 40, name: test }
+- { id: 50, name: misc }
+global:
+ hostname: "{{ inventory_hostname }}"
+ syslog:
+ - 192.168.1.1
+ - 192.168.1.2
+ ntpkey: '123$%^abc'
+ ntpserver:
+ - 192.168.2.1
+ - 192.168.2.2

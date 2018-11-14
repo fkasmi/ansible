@@ -1,0 +1,24 @@
+---
+ - name: Quelques commandes relatives au module nxos_config
+   hosts: Nexus
+   connection: local
+   gather_facts: no
+
+   
+
+   tasks:
+    - name: Creation d'une loopback75
+      nxos_config:
+        lines: 
+           # - shut
+           - description test Ansible ne pas tenir compte
+           - ip address 75.75.75.75 255.255.255.255
+           - no sh
+        parents: int loopback75
+
+    - name: difference entre la running-config une conf sauvegardé
+      nxos_config:
+       diff_against: intended
+       intended_config: "{{ lookup('file', 'conf.txt') }}"
+
+

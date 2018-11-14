@@ -1,0 +1,15 @@
+---
+ - name: Quelques commandes relatives au module nxos_command
+   hosts: Nexus
+   connection: local
+   gather_facts: no
+
+   
+
+   tasks:
+    - name: Execution backup SW4
+      nxos_config:
+        backup: yes
+      register: backup_nxos_location
+
+

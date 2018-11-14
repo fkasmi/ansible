@@ -1,0 +1,14 @@
+---
+ - name: Quelques commandes relatives au module nxos_facts
+   hosts: Nexus
+   connection: local
+   gather_facts: yes
+   
+
+   tasks:
+   - name: Recuperation des infos de chaque equipement
+     nxos_facts:
+        gather_subset: all
+   - debug:
+       msg: "L'equipement {{ ansible_net_hostname }} a pour serial number {{ ansible_net_serialnum }} et comme version {{ ansible_net_version }}.La liste des voisins CDP sont {{ ansible_net_neighbors }}"
+

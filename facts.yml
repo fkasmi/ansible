@@ -1,0 +1,14 @@
+---
+ - name: write the inventory in into file
+   hosts: Nexus
+   connection: local
+   gather_facts: no
+   copy:
+   content: |
+          MGMT_IP;HOSTNAME;MODEL;VERSION;IMAGE;
+          {% for host in ansible_play_hosts %}
+          {{ hostvars[host].inventory_hostname}};{{ hostvars[host].facts_output.ansible_facts.ansible_net_hostname }};{{ hostvars[host].facts_output.ansible_facts.ansible_net_model }};{{ hostvars[host].facts_output.ansible_facts.ansible_net_version }};{{ hostvars[host].facts_output.ansible_facts.ansible_net_image }}
+          {% endfor %}
+
+   dest: systems.csv
+   backup: yes

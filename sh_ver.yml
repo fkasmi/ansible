@@ -1,0 +1,22 @@
+---
+ - name: Quelques commandes relatives au module nxos_command
+   hosts: Nexus
+   connection: local
+   gather_facts: no
+
+   
+
+   tasks:
+    - name: Execution du show version sur SW4
+      nxos_command:
+        commands: show version
+      register: show_version
+    - debug: var=show_version.stdout_lines
+
+    - name: run commands and specify the output format
+      nxos_command:
+         commands:
+          - command: show version
+            output: json
+      register: show_ver
+    - debug: var=show_ver.stdout_lines

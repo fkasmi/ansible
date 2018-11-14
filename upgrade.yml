@@ -1,0 +1,21 @@
+---
+ - name: Realisation d'un upgrade logiciel
+   hosts: Nexus
+   connection: local
+   gather_facts: yes
+   
+
+   tasks:
+   - name: GATHER FACTS TO RECORD CURRENT VERSION OF NX-OS
+     nxos_facts:
+
+
+   - name: CURRENT OS VERSION
+     debug: var=os
+
+   - name: ENSURE SCP SERVER IS ENABLED
+     nxos_feature:
+       feature: scp-server
+       state: enabled
+
+
